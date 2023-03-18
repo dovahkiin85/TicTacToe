@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
-
+import { createContext, useEffect, useRef, useState } from 'react'
+import Cell from './components/Cell'
+import React from 'react'
+export const AppContext = createContext(null)
 
 function App() {
 
@@ -74,6 +76,7 @@ function App() {
   }, [block1,block2,block3,block4,block5,block6,block7,block8,block9])
 
   return (
+    <AppContext.Provider value={{isXorNot, setIsXorNot, wonOrNot}}>
     <body style={{justifyContent:'center'}}>
     <div style={{marginLeft:'450px'}} >
       <p >{wonOrNot}</p>
@@ -81,19 +84,19 @@ function App() {
       <div >
       <table style={{border: '10px solid blue', borderRadius:'2em'}}>
       <thead >
-        <td ref={div}  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}} onClick={() => {if(wonOrNot=='No one has won YET'){if(block1 != "X" && block1 != "O"){isXorNot? setBlock1('X',setIsXorNot(!isXorNot)): setBlock1('O',setIsXorNot(!isXorNot))}}}}>{block1}</button></td>
-        <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block2 != "X" && block2 != "O"){isXorNot? setBlock2('X',setIsXorNot(!isXorNot)): setBlock2('O',setIsXorNot(!isXorNot))}}}}>{block2}</button></td>
-        <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block3 != "X" && block3 != "O"){isXorNot? setBlock3('X',setIsXorNot(!isXorNot)): setBlock3('O',setIsXorNot(!isXorNot))}}}}>{block3}</button></td>
+        <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block1} setBlock={setBlock1}/></td>
+        <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block2} setBlock={setBlock2}/></td>
+        <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block3} setBlock={setBlock3}/></td>
       </thead>
       <tr>
-      <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block4 != "X" && block4 != "O"){isXorNot? setBlock4('X',setIsXorNot(!isXorNot)): setBlock4('O',setIsXorNot(!isXorNot))}}}}>{block4}</button></td>
-      <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block5 != "X" && block5 != "O"){isXorNot? setBlock5('X',setIsXorNot(!isXorNot)): setBlock5('O',setIsXorNot(!isXorNot))}}}}>{block5}</button></td>
-      <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block6 != "X" && block6 != "O"){isXorNot? setBlock6('X',setIsXorNot(!isXorNot)): setBlock6('O',setIsXorNot(!isXorNot))}}}}>{block6}</button></td>
+      <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block4} setBlock={setBlock4}/></td>
+      <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block5} setBlock={setBlock5}/></td>
+      <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block6} setBlock={setBlock6}/></td>
       </tr>
       <tr>
-      <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block7 != "X" && block7 != "O"){isXorNot? setBlock7('X',setIsXorNot(!isXorNot)): setBlock7('O',setIsXorNot(!isXorNot))}}}}>{block7}</button></td>
-      <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block8 != "X" && block8 != "O"){isXorNot? setBlock8('X',setIsXorNot(!isXorNot)): setBlock8('O',setIsXorNot(!isXorNot))}}}}>{block8}</button></td>
-      <td ref={div} style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><button style={{padding:'5px'}}onClick={() => {if(wonOrNot=='No one has won YET'){if(block9 != "X" && block9 != "O"){isXorNot? setBlock9('X',setIsXorNot(!isXorNot)): setBlock9('O',setIsXorNot(!isXorNot))}}}}>{block9}</button></td>
+      <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block7} setBlock={setBlock7}/></td>
+      <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block8} setBlock={setBlock8}/></td>
+      <td  style={{border: '4px solid gold', borderRadius:'1em', padding:'55px'}}><Cell block={block9} setBlock={setBlock9}/></td>
       </tr>
     </table>
       </div>
@@ -110,6 +113,7 @@ function App() {
       </p>
     </div>
     </body>
+    </AppContext.Provider>
   )
 }
 
